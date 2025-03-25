@@ -1,0 +1,8 @@
+@for (item of items; track $index) {
+    <div>
+        <div>{{ item.name }}</div>
+        <div>{{ item.favorite }}</div>
+    </div>
+} @empty {
+    <div>No items found</div>
+}
