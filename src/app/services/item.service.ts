@@ -29,4 +29,13 @@ export class ListService {
     }
     return false;
   }
+
+  public removeItem(id: number): boolean {
+    const index = this.items.findIndex(i => i.id === id);
+    if (index != -1) {
+      this.items.splice(index, 1);
+      return true;
+    }
+    return false;
+  }
 }

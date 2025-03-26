@@ -12,10 +12,15 @@ export class ListComponent implements OnInit {
   items: Item[];
 
   constructor(public listService: ListService) {
-    this.items =  [];
+    this.items = [];
   }
 
   ngOnInit(): void {
+    this.items = this.listService.getItems();
+  }
+
+  onDelete(id: number) {
+    this.listService.removeItem(id);
     this.items = this.listService.getItems();
   }
 }
