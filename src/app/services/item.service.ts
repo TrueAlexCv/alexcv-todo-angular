@@ -19,4 +19,14 @@ export class ListService {
   public getItems(): Item[] {
     return this.items;
   }
+
+  public addItem(item: Item): boolean {
+    const maxId = this.items.length > 0 ? Math.max(...this.items.map(i => i.id)) : 0;
+    item.id = maxId + 1;
+    const index = this.items.push(item);
+    if (index != -1) {
+      return true;
+    }
+    return false;
+  }
 }

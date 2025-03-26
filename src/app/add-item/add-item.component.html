@@ -1,0 +1,17 @@
+<form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="name">Nombre</label>
+    <input type="text" id="name"  maxlength="50" formControlName="name">
+    @if (itemForm.get('name')?.invalid && itemForm.get('name')?.touched && itemForm.get('name')?.dirty) {
+      <span>{{ getErrorMessage('name') }}</span>
+    }
+  </div>
+  <div>
+    <label for="favorite">Marcar como favorito</label>
+    <input type="checkbox" id="favorite" formControlName="favorite">
+    @if (itemForm.get('favorite')?.invalid && itemForm.get('favorite')?.touched && itemForm.get('favorite')?.dirty) {
+      <span>{{ getErrorMessage('favorite') }}</span>
+    }
+  </div>
+  <button type="submit" [disabled]="itemForm.invalid">Guardar</button>
+</form>
