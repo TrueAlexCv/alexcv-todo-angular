@@ -38,4 +38,13 @@ export class ListService {
     }
     return false;
   }
+
+  public toggleFavorite(id: number): boolean {
+    const index = this.items.findIndex(i => i.id === id);
+    if (index != -1) {
+      this.items[index].favorite = !this.items[index].favorite;
+      return true;
+    }
+    return false;
+  }
 }

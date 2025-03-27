@@ -10,6 +10,7 @@ import { Item } from '../models/item';
 })
 export class ListComponent implements OnInit {
   items: Item[];
+  selectedFilter: 'all' | 'favorites' = 'all';
 
   constructor(public listService: ListService) {
     this.items = [];
@@ -22,5 +23,24 @@ export class ListComponent implements OnInit {
   onDelete(id: number) {
     this.listService.removeItem(id);
     this.items = this.listService.getItems();
+  }
+
+  onFavoriteChange(id: number) {
+    this.listService.toggleFavorite(id);
+    this.items = this.listService.getItems();
+  }
+
+  toggleFavoriteList(toggle: string) {
+    switch(toggle) {
+      case 'all':
+        this.items = this.listService.getItems();
+        break;
+      case 'favorites':
+        this.items = this.listService.getItems().filter(i => i.favorite);
+        break;
+      default:
+        this.items = this.listService.getItems();
+        break;
+    }
   }
 }

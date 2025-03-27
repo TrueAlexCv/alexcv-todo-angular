@@ -1,7 +1,14 @@
+<div>
+    <button (click)="toggleFavoriteList('all')">TO-DO</button>
+    <button (click)="toggleFavoriteList('favorites')">Favoritos</button>
+</div>
 @for (item of items; track $index) {
     <div>
         <div>{{ item.name }}</div>
-        <div>{{ item.favorite }}</div>
+        <div>
+            <label>Favorito</label>
+            <input type="checkbox" [checked]="item.favorite" (change)="onFavoriteChange(item.id)">
+        </div>
     </div>
     <div>
         <button (click)="onDelete(item.id)">Delete</button>
