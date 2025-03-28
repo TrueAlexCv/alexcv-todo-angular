@@ -1,18 +1,19 @@
 <div>
-    <button (click)="toggleFavoriteList('all')">TO-DO</button>
-    <button (click)="toggleFavoriteList('favorites')">Favoritos</button>
+    <button mat-stroked-button [ngClass]="{'selected': selectedFilter === 'all'}"
+        (click)="toggleFavoriteList('all')">TO-DO</button>
+    <button mat-stroked-button [ngClass]="{'selected': selectedFilter === 'favorites'}"
+        (click)="toggleFavoriteList('favorites')">Favoritos</button>
 </div>
 @for (item of items; track $index) {
+<div>
+    <mat-toolbar>{{ item.name }}</mat-toolbar>
     <div>
-        <div>{{ item.name }}</div>
-        <div>
-            <label>Favorito</label>
-            <input type="checkbox" [checked]="item.favorite" (change)="onFavoriteChange(item.id)">
-        </div>
+        <mat-checkbox [checked]="item.favorite" (change)="onFavoriteChange(item.id)">Favorito</mat-checkbox>
     </div>
-    <div>
-        <button (click)="onDelete(item.id)">Delete</button>
-    </div>
+</div>
+<div>
+    <button mat-button (click)="onDelete(item.id)">Delete</button>
+</div>
 } @empty {
-    <div>No items found</div>
+<div>No items found</div>
 }

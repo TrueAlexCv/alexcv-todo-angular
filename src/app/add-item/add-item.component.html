@@ -1,17 +1,17 @@
+<h3>Agregar nuevo item</h3>
 <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="name">Nombre</label>
-    <input type="text" id="name"  maxlength="50" formControlName="name">
+  <mat-form-field appearance="fill">
+    <mat-label for="name">Nombre</mat-label>
+    <input matInput type="text" id="name"  maxlength="50" formControlName="name">
     @if (itemForm.get('name')?.invalid && itemForm.get('name')?.touched && itemForm.get('name')?.dirty) {
-      <span>{{ getErrorMessage('name') }}</span>
+      <mat-error>{{ getErrorMessage('name') }}</mat-error>
     }
-  </div>
+  </mat-form-field>
   <div>
-    <label for="favorite">Marcar como favorito</label>
-    <input type="checkbox" id="favorite" formControlName="favorite">
+    <mat-checkbox matInput id="favorite" formControlName="favorite">Marcar como favorito</mat-checkbox>
     @if (itemForm.get('favorite')?.invalid && itemForm.get('favorite')?.touched && itemForm.get('favorite')?.dirty) {
-      <span>{{ getErrorMessage('favorite') }}</span>
+      <mat-error>{{ getErrorMessage('favorite') }}</mat-error>
     }
   </div>
-  <button type="submit" [disabled]="itemForm.invalid">Guardar</button>
+  <button mat-raised-button  type="submit" [disabled]="itemForm.invalid">Guardar</button>
 </form>

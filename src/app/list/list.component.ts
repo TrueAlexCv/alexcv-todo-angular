@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ListService } from '../services/item.service';
 import { Item } from '../models/item';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-list',
-  imports: [],
+  imports: [CommonModule, MatButtonModule, MatCheckboxModule, MatToolbarModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
@@ -30,16 +34,14 @@ export class ListComponent implements OnInit {
     this.items = this.listService.getItems();
   }
 
-  toggleFavoriteList(toggle: string) {
+  toggleFavoriteList(toggle: 'all' | 'favorites') {
+    this.selectedFilter = toggle;
     switch(toggle) {
       case 'all':
         this.items = this.listService.getItems();
         break;
       case 'favorites':
         this.items = this.listService.getItems().filter(i => i.favorite);
-        break;
-      default:
-        this.items = this.listService.getItems();
         break;
     }
   }
