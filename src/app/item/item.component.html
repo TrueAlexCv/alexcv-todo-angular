@@ -1,0 +1,9 @@
+<div>
+    <mat-toolbar>{{ item.name }}</mat-toolbar>
+    <div>
+        <mat-checkbox [checked]="item.favorite" (change)="onFavoriteChange(item.id)">Favorito</mat-checkbox>
+    </div>
+</div>
+<div>
+    <button mat-button (click)="onDelete(item.id)">Delete</button>
+</div>

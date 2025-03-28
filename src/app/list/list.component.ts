@@ -4,11 +4,11 @@ import { ListService } from '../services/item.service';
 import { Item } from '../models/item';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { ItemComponent } from "../item/item.component";
 
 @Component({
   selector: 'app-list',
-  imports: [CommonModule, MatButtonModule, MatCheckboxModule, MatToolbarModule],
+  imports: [CommonModule, MatButtonModule, MatCheckboxModule, ItemComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
@@ -24,16 +24,6 @@ export class ListComponent implements OnInit {
     this.items = this.listService.getItems();
   }
 
-  onDelete(id: number) {
-    this.listService.removeItem(id);
-    this.items = this.listService.getItems();
-  }
-
-  onFavoriteChange(id: number) {
-    this.listService.toggleFavorite(id);
-    this.items = this.listService.getItems();
-  }
-
   toggleFavoriteList(toggle: 'all' | 'favorites') {
     this.selectedFilter = toggle;
     switch(toggle) {
@@ -44,5 +34,15 @@ export class ListComponent implements OnInit {
         this.items = this.listService.getItems().filter(i => i.favorite);
         break;
     }
+  }
+
+  onDelete(id: number) {
+    this.listService.removeItem(id);
+    this.items = this.listService.getItems();
+  }
+
+  onFavoriteChange(id: number) {
+    this.listService.toggleFavorite(id);
+    this.items = this.listService.getItems();
   }
 }
